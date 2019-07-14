@@ -1,0 +1,12 @@
+<script type="text/javascript">
+//<![CDATA[
+    Eloom.PayUCardTypes.init({mediaUrl: "<?php echo Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA);?>"});
+
+    Eloom.PayU.config = {installmentsUrl: "<?php echo $this->getUrl('eloompayu/index/installments', array('_secure' => true)); ?>", logo: "<?php echo $this->getSkinUrl('eloom/payu/images/logo.png'); ?>"};
+    Eloom.PayU.Errors.config = eval(<?php echo $this->listJsonErrors(); ?>);
+
+    payU.setURL('https://api.payulatam.com/payments-api/4.0/service');
+    payU.setPublicKey('<?php echo $this->getPublicKey();?>');
+    payU.setAccountID('<?php echo $this->getAccountId();?>');
+//]]>
+</script>

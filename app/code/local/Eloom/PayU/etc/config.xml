@@ -1,0 +1,255 @@
+<?xml version="1.0"?>
+<config>
+  <modules>
+    <Eloom_PayU>
+      <version>##eloom.versao##</version>
+    </Eloom_PayU>
+  </modules>
+
+  <frontend>
+    <routers>
+      <eloompayu>
+        <use>standard</use>
+        <args>
+          <module>Eloom_PayU</module>
+          <frontName>eloompayu</frontName>
+        </args>
+      </eloompayu>
+    </routers>
+
+    <layout>
+      <updates>
+        <eloom_payu>
+          <file>eloom/payu.xml</file>
+        </eloom_payu>
+      </updates>
+    </layout>
+
+    <translate>
+      <modules>
+        <Eloom_PayU>
+          <files>
+            <default>Eloom_PayU.csv</default>
+          </files>
+        </Eloom_PayU>
+      </modules>
+    </translate>
+  </frontend>
+  
+  <adminhtml>
+    <translate>
+      <modules>
+        <Eloom_PayU>
+          <files>
+            <default>Eloom_PayU.csv</default>
+          </files>
+        </Eloom_PayU>
+      </modules>
+    </translate>
+  </adminhtml>
+
+  <global>
+    <models>
+      <eloom_payu>
+        <class>Eloom_PayU_Model</class>
+        <resourceModel>eloom_payu_resource</resourceModel>
+      </eloom_payu>
+
+      <eloom_payu_resource>
+        <class>Eloom_PayU_Model_Resource</class>
+      </eloom_payu_resource>
+    </models>
+
+    <resources>
+      <eloom_payu_write>
+        <connection>
+          <use>core_write</use>
+        </connection>
+      </eloom_payu_write>
+      <eloom_payu_read>
+        <connection>
+          <use>core_read</use>
+        </connection>
+      </eloom_payu_read>
+      <eloom_payu_setup>
+        <setup>
+          <module>Eloom_PayU</module>
+        </setup>
+        <connection>
+          <use>core_setup</use>
+        </connection>
+      </eloom_payu_setup>
+    </resources>
+
+    <helpers>
+      <eloom_payu>
+        <class>Eloom_PayU_Helper</class>
+      </eloom_payu>
+    </helpers>
+
+    <blocks>
+      <eloom_payu>
+        <class>Eloom_PayU_Block</class>
+      </eloom_payu>
+      <adminhtml>
+        <rewrite>
+          <sales_order_totals>Eloom_Payment_Block_Adminhtml_Sales_Order_Totals</sales_order_totals>
+          <sales_order_invoice_totals>Eloom_Payment_Block_Adminhtml_Sales_Order_Invoice_Totals</sales_order_invoice_totals>
+          <sales_order_creditmemo_totals>Eloom_Payment_Block_Adminhtml_Sales_Order_Creditmemo_Totals</sales_order_creditmemo_totals>
+        </rewrite>
+      </adminhtml>
+      <sales>
+        <rewrite>
+          <order_totals>Eloom_Payment_Block_Sales_Order_Totals</order_totals>
+          <order_invoice_totals>Eloom_Payment_Block_Sales_Order_Invoice_Totals</order_invoice_totals>
+          <order_creditmemo_totals>Eloom_Payment_Block_Sales_Order_Creditmemo_Totals</order_creditmemo_totals>
+        </rewrite>
+      </sales>
+    </blocks>
+    
+    <sales>
+      <quote>
+        <totals>
+          <eloom_payu_discount>
+            <class>eloom_payu/sales_quote_address_total_discount</class>
+            <after>grand_total</after>
+          </eloom_payu_discount>
+          <eloom_payu_interest>
+            <class>eloom_payu/sales_quote_address_total_interest</class>
+            <after>shipping</after>
+            <before>grand_total</before>
+          </eloom_payu_interest>
+        </totals>
+      </quote>
+      <order_invoice>
+        <totals>
+          <eloom_payu_discount>
+            <class>eloom_payu/sales_order_invoice_total_discount</class>
+            <after>grand_total</after>
+          </eloom_payu_discount>
+          <eloom_payu_interest>
+            <class>eloom_payu/sales_order_invoice_total_interest</class>
+            <before>grand_total</before>
+          </eloom_payu_interest>
+        </totals>
+      </order_invoice>
+    </sales>
+    
+    <fieldsets>
+      <sales_convert_quote_address>
+        <!-- Discount -->
+        <payu_discount_amount>
+          <to_order>*</to_order>
+        </payu_discount_amount>
+        <payu_base_discount_amount>
+          <to_order>*</to_order>
+        </payu_base_discount_amount>
+        <!-- Interest -->
+        <payu_interest_amount>
+          <to_order>*</to_order>
+        </payu_interest_amount>
+        <payu_base_interest_amount>
+          <to_order>*</to_order>
+        </payu_base_interest_amount>
+      </sales_convert_quote_address>
+    </fieldsets>
+        
+    <events>
+      <eloom_payu_cancel_order>
+        <observers>
+          <eloom_payu_cancel_order>
+            <class>eloom_payu/observer</class>
+            <method>cancelOrder</method>
+          </eloom_payu_cancel_order>
+        </observers>
+      </eloom_payu_cancel_order>
+      <eloom_payu_process_transaction>
+        <observers>
+          <eloom_payu_process_transaction>
+            <class>eloom_payu/observer</class>
+            <method>processTransaction</method>
+          </eloom_payu_process_transaction>
+        </observers>
+      </eloom_payu_process_transaction>
+    </events>
+  </global>
+
+  <admin>
+    <routers>
+      <eloom_payu>
+        <use>admin</use>
+        <args>
+          <module>Eloom_PayU</module>
+          <frontName>admin_eloompayu</frontName>
+        </args>
+      </eloom_payu>
+    </routers>
+  </admin>
+  
+  <crontab>
+    <jobs>
+      <eloom_payu_waiting_payment>
+        <schedule>
+          <cron_expr>##cron_expr_waitingPaymentTransaction##</cron_expr>
+        </schedule>
+        <run>
+          <model>eloom_payu/cron::waitingPaymentTransaction</model>
+        </run>
+      </eloom_payu_waiting_payment>
+      <eloom_payu_cancel_order_with_payment_expired>
+        <schedule>
+          <cron_expr>##cron_expr_cancelOrderWithPaymentExpired##</cron_expr>
+        </schedule>
+        <run>
+          <model>eloom_payu/cron::cancelOrderWithPaymentExpired</model>
+        </run>
+      </eloom_payu_cancel_order_with_payment_expired>
+    </jobs>
+  </crontab>
+
+  <default>
+    <payment>
+      <eloom_payu>
+        <allowspecific>1</allowspecific>
+        <specificcountry>BR</specificcountry>
+        <payment_action>sale</payment_action>
+        <environment>test</environment>
+      </eloom_payu>
+      <eloom_payu_boleto>
+        <active>0</active>
+        <title><![CDATA[Boleto Bancário]]></title>
+        <model>eloom_payu/method_boleto</model>
+        <expiration>1</expiration>
+        <instructions><![CDATA[
+<p>O vencimento do boleto será amanhã ou no próximo dia útil em caso de feriados ou finais de semana.</p>
+<p>O boleto bancário estará disponível para impressão na página de Confirmação do Pedido.</p>
+<p>O prazo de entrega passará a valer a partir do momento em que o banco confirmar o pagamento do boleto. O processo poderá levar até 72h.</p>]]>
+        </instructions>
+        <cancel>1</cancel>
+        <cancel_on_friday>5</cancel_on_friday>
+        <cancel_on_saturday>4</cancel_on_saturday>
+        <cancel_on_sunday>3</cancel_on_sunday>
+        <sort_order>3</sort_order>
+      </eloom_payu_boleto>
+      <eloom_payu_cc>
+        <active>0</active>
+        <title><![CDATA[Cartão de Crédito]]></title>
+        <model>eloom_payu/method_cc</model>
+        <instructions><![CDATA[Não esqueça! O Endereço de Cobrança e Titular do Cartão devem ser os mesmos do Endereço da Fatura do Cartão de Crédito.]]></instructions>
+        <min_installment>9.00</min_installment>
+        <receipt>A</receipt>
+        <total_installmens>12</total_installmens>
+        <installmens_without_interest>3</installmens_without_interest>
+        <interest>1.99</interest>
+        <sort_order>4</sort_order>
+      </eloom_payu_cc>
+      <eloom_payu_terminal>
+        <active>0</active>
+        <title><![CDATA[PayU - Televendas]]></title>
+        <instructions><![CDATA[<p>Um email com um link de pagamento será enviado ao cliente.</p>]]></instructions>
+        <model>eloom_payu/method_terminal</model>
+        <sort_order>5</sort_order>
+      </eloom_payu_terminal>
+    </payment>
+  </default>
+</config>

@@ -1,0 +1,15 @@
+<script type="text/javascript">
+	function payuSinc() {
+		new Ajax.Request("<?php echo $this->getSynchronizeUrl() ?>", {
+			method: 'get',
+			onSuccess: function (transport) {
+				if (transport.responseText) {
+				  alert(transport.responseText);
+                  location.reload();
+				}
+			}
+		});
+	}
+</script>
+
+<?php echo $this->getButtonHtml() ?>

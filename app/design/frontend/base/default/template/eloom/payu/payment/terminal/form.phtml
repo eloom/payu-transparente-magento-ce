@@ -1,0 +1,13 @@
+<div id="payment_form">
+	<?php
+	$ccBlock = $this->getLayout()->createBlock('eloom_payu/payment_terminal_cc');
+	if ($ccBlock != null) {
+		echo "<div class=\"cc\">" . $ccBlock->toHtml() . "</div>";
+	}
+
+	$boletoBlock = $this->getLayout()->createBlock('eloom_payu/payment_terminal_boleto');
+	if ($boletoBlock != null) {
+		echo "<div class=\"boleto\">" . $boletoBlock->toHtml() . "</div>";
+	}
+	?>
+</div>

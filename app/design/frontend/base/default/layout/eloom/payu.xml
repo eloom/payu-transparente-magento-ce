@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout version="0.1.0">
+  <idecheckoutvm_index_index translate="label">
+    <reference name="head">
+      <block type="core/text" name="payu.token">
+        <action method="setText">
+          <text><![CDATA[<script type="text/javascript" src="https://gateway.payulatam.com/ppp-web-gateway/javascript/PayU.js"></script>]]></text>
+        </action>
+      </block>
+      <action method="addJs">
+        <name>eloom/payu/app.js?v=##eloom.versao##</name>
+      </action>
+    </reference>
+        
+    <reference name="after_body_start">
+      <block type="eloom_payu/payment_standard" name="eloom.payu.standard" />
+    </reference>
+  </idecheckoutvm_index_index>
+
+  <checkout_onepage_success>
+    <reference name="checkout.success">
+      <block type="eloom_payu/checkout_onepage_details" name="success.details" />
+    </reference>
+  </checkout_onepage_success>
+
+  <eloompayu_terminal_index translate="label">
+    <remove name="right"/>
+    <remove name="left"/>
+
+    <reference name="root">
+      <action method="setTemplate">
+        <template>page/1column.phtml</template>
+      </action>
+    </reference>
+
+    <reference name="header">
+      <action method="unsetChild">
+        <alias>topLinks</alias>
+      </action>
+      <action method="unsetChild">
+        <alias>store_language</alias>
+      </action>
+      <action method="unsetChild">
+        <alias>topMenu</alias>
+      </action>
+      <action method="unsetChild">
+        <alias>topContainer</alias>
+      </action>
+    </reference>
+
+    <reference name="head">
+      <action method="addItem">
+        <type>js</type>
+        <name>ideasa/idecheckoutvm/app.js?##eloom.versao##</name>
+      </action>
+      <action method="addItem">
+        <type>js</type>
+        <name>ideasa/idecheckoutvm/cc.js?##eloom.versao##</name>
+      </action>
+      <action method="addItem">
+        <type>js</type>
+        <name>ideasa/ideaddons/prototype/maskedinput.js?##eloom.versao##</name>
+      </action>
+      <block type="core/text" name="payu.token">
+        <action method="setText">
+          <text><![CDATA[<script type="text/javascript" src="https://gateway.payulatam.com/ppp-web-gateway/javascript/PayU.js"></script>]]></text>
+        </action>
+      </block>
+      <action method="addJs">
+        <name>eloom/payu/app.js?v=##eloom.versao##</name>
+      </action>
+      <action method="addJs">
+        <name>eloom/payu/terminal.js?v=##eloom.versao##</name>
+      </action>
+      <action method="addItem">
+        <type>skin_css</type>
+        <name>eloom/payu/css/styles.css?##eloom.versao##</name>
+      </action>
+    </reference>
+
+    <reference name="content">
+      <block type="eloom_payu/terminal_order_info" name="sales.order.info">
+        <block type="eloom_payu/terminal_order_view" name="sales.order.view">
+          <block type="eloom_payu/terminal_order_items" name="order_items" template="eloom/payu/terminal/order/items.phtml">
+            <action method="addItemRender"><type>default</type><block>sales/order_item_renderer_default</block><template>sales/order/items/renderer/default.phtml</template></action>
+            <action method="addItemRender"><type>grouped</type><block>sales/order_item_renderer_grouped</block><template>sales/order/items/renderer/default.phtml</template></action>
+            <block type="sales/order_totals" name="order_totals" template="sales/order/totals.phtml">
+              <action method="setLabelProperties"><value>colspan="4" class="a-right"</value></action>
+              <action method="setValueProperties"><value>class="last a-right"</value></action>
+              <block type="tax/sales_order_tax" name="tax" template="tax/order/tax.phtml" />
+            </block>
+          </block>
+        </block>
+        <block type="eloom_payu/terminal_order_payment" name="terminal.payment" as="payment" template="eloom/payu/terminal/order/payment.phtml">
+          <block type="eloom_payu/terminal_order_payment_methods" name="terminal.methods" as="methods" template="eloom/payu/terminal/order/payment/methods.phtml" />
+        </block>
+      </block>
+    </reference>
+
+    <reference name="after_body_start">
+      <block type="eloom_payu/payment_standard" name="eloom.payu.standard" />
+    </reference>
+  </eloompayu_terminal_index>
+</layout>

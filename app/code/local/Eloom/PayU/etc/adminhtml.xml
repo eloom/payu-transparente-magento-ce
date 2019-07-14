@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+
+<config>
+	<acl>
+		<resources>
+			<admin>
+				<children>
+					<eloom_payu translate="title" module="eloom_payu">
+						<title>PayU</title>
+						<children>
+							<sinc translate="title" module="eloom_payu">
+								<title><![CDATA[Synchronize]]></title>
+								<sort_order>0</sort_order>
+							</sinc>
+							<logger translate="title" module="eloom_payu">
+								<title><![CDATA[Get Logger]]></title>
+								<sort_order>1</sort_order>
+							</logger>
+						</children>
+					</eloom_payu>
+				</children>
+			</admin>
+		</resources>
+	</acl>
+</config>

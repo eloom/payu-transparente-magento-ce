@@ -1,0 +1,83 @@
+# -- A
+"Account ID","Account ID"
+"API Key","API Key"
+"Approved Order Status","Status de Pedidos Aprovados"
+"Billett will be sent to your email.","Um link com o boleto bancário será enviado para seu email."
+
+# -- B
+"Billett Generate","Gerar Boleto"
+
+# -- C
+"Credit Card Type", "Bandeira"
+"CC Number","Número do Cartão"
+"CC Owner","Titular do Cartão"
+"CC Expiry","Validade"
+"CC CVC","Cód. Segurança"
+# -- D
+"Discount", "Desconto à vista"
+
+# -- E
+"Error","Erro"
+"Environment","Processar pagamento em"
+"Enabled","Habilitado"
+
+# -- G
+"Get Logger","Buscar Log"
+
+# -- L
+"Last Credit Card Number", "Últimos digitos cartão"
+
+# -- I
+"Instructions", "Instruções"
+"Installment no Interest", "Parcelas sem Juros"
+"Installments", "Forma de Pagamento"
+"Interest","Juros"
+
+# -- N
+"New Order Status","Novo Status do Pedido"
+
+# -- M
+"Merchant ID","Merchant ID"
+"Month/Year","(Mês/Ano)"
+
+# -- O
+"<strong>ORDER STATUS</strong>","<strong>STATUS DOS PEDIDOS</strong>"
+
+# -- P
+"Your payment was processed by PayU", "Sua solicitação foi processada com sucesso por PayU."
+"Your payment status is", "Status do pagamento"
+"Payment from applicable countries","Pagamento para Países Selecionados"
+"Payment from Specific countries","Pagamento para Países Específicos"
+"Public Key","Chave Pública"
+"Pay With", "Pago com"
+"PayU Order ID", "Pedido na PayU"
+"PayU Transaction ID", "Transação na PayU"
+"PayU Bar Code", "Código de Barras"
+"Production","Produção"
+"Payment Link","Link de Pagamento"
+"Process Payment","Pagar"
+"Processing...","Processando..."
+
+# -- S
+"Holder CPF", "CPF do Titular"
+"Holder Phone", "Telefone do Titular"
+"Holder Birth Date", "Nascimento do Titular"
+"Holder Another", "Este cartão pertence a outra pessoa."
+"Sort Order", "Ordem"
+"Synchronize","Sincronizar com PayU"
+
+# -- T
+"Transaction.State.APPROVED","Transação aprovada."
+"Transaction.State.DECLINED","Transação rejeitada."
+"Transaction.State.ERROR", "Erro processando a transação."
+"Transaction.State.EXPIRED", "Sua compra expirou."
+"Transaction.State.PENDING", "Sua compra está aguardando pagamento."
+"Transaction.State.SUBMITTED", "Transação enviada para a entidade financeira e por algum motivo não terminou seu processamento."
+"Transaction.State.CANCELLED","Transação cancelada."
+"Test","Teste"
+"The Payment has been updated.","Pagamento sincronizado com sucesso."
+"The Payment has not been updated.","Erro ao sincronizar pagamento."
+
+# -- W
+"When the order has the NEW and IN PROGRESS state type in Magento will put the order in this status.", "Quando o pedido tem o tipo de status NEW e IN PROGRESS na PayU, a loja definirá este status para o pedido."
+"When the order has the APPROVED status type in Magento will put the order in this status.","Quando o pedido tem o tipo de status APPROVED na PayU, a loja definirá este status para o pedido."

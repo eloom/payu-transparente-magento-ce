@@ -1,0 +1,34 @@
+<?php
+$methods = array();
+if($this->isCartaoEnabled()) {
+    $methods['terminal_cc'] = 'Cartão de Crédito';
+}
+if($this->isBoletoEnabled()) {
+    $methods['terminal_boleto'] = 'Boleto Bancário';
+}
+?>
+<?php foreach ($methods as $_code => $label): ?>
+    <dt id="dt_method_<?php echo $_code ?>">
+        <input id="p_method_<?php echo $_code ?>" value="<?php echo $_code ?>" type="radio" name="payment[method]" onclick="payment.switchMethod('<?php echo $_code ?>')" class="radio" />
+        <label for="p_method_<?php echo $_code ?>"><?php echo $label ?></label>
+    </dt>
+<?php endforeach; ?>
+
+<?php
+$_code = $this->getSelectedMethodCode();
+$_method = $this->getMethodInstance($_code);
+?>
+
+<?php if ($html = $this->getPaymentMethodFormHtml($_method)): ?>
+    <dd id="dd_method_<?php echo $_code ?>">
+        <?php echo $html; ?>
+    </dd>
+<?php endif;?>
+
+<script type="text/javascript">
+	//<![CDATA[
+	<?php echo $this->getChildChildHtml('scripts'); ?>
+	payment.init();
+    //payment.switchMethod('<?php echo $_code ?>');
+	//]]>
+</script>

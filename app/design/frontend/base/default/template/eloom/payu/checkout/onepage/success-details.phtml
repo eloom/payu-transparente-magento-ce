@@ -1,0 +1,35 @@
+<?php
+$payment = $this->getPayment();
+$helper = Mage::helper('eloom_payu');
+?>
+
+<div class="success-detail">
+  <img src="<?php echo $this->getSkinUrl('eloom/payu/images/logo.png'); ?>"/>
+    <p><?php echo $helper->__('Your payment was processed by PayU'); ?></p>
+    
+    <p>
+      <?php echo $helper->__('Your payment status is') . ': ' . $helper->__('Transaction.State.' . $payment->getCcStatus()); ?>
+    </p>
+    
+    <p>
+      <?php echo $helper->__('PayU Transaction ID') . ': ' . $payment->getLastTransId(); ?>
+    </p>
+
+    <p>
+      <?php echo $helper->__('PayU Order ID') . ': ' . $this->getPayUOrderId(); ?>
+    </p>
+    
+    <?php if ($this->isBoleto()): ?>
+      <p><?php echo $helper->__('PayU Bar Code') . ': ' . $this->getBilletBarCode(); ?></p>
+    <?php endif; ?>
+
+  <?php if ($this->isBoleto()): ?>
+    <p><?php echo Mage::helper('checkout')->__('Print Boleto Message'); ?></p>
+    <div class="buttons-set">
+      <a href="<?php echo $this->getBilletLink(); ?>" target="blank" class="button" title="<?php echo Mage::helper('checkout')->__('Print Boleto'); ?>">
+        <i class="fa fa-barcode" aria-hidden="true"></i>
+        <?php echo $helper->__('Print Boleto'); ?>
+      </a>
+    </div>
+  <?php endif; ?>
+</div>

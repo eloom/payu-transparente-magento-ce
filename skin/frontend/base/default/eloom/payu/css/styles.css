@@ -1,0 +1,41 @@
+input[type=email],
+input[type=search],
+input[type=number],
+input[type=password],
+input[type=tel],
+input[type=text],
+select {
+	width: 100%;
+}
+.eloompayu-terminal-index #co-payment-form fieldset {
+	-webkit-transition: .4s;
+	-moz-transition: .4s;
+	-o-transition: .4s;
+	-ms-transition: .4s;
+	transition: .4s;
+}
+.eloompayu-terminal-index #co-payment-form #messages-payu {
+	display: inline-block;
+}
+.eloompayu-terminal-index #co-payment-form dt img {
+	float: right;
+}
+.eloompayu-terminal-index #co-payment-form dd label {
+	display: block;
+}
+.eloompayu-terminal-index #co-payment-form label.holder-another {
+	display: inline-block;
+}
+.eloompayu-terminal-index #co-payment-form li.payu-cc-holder {
+	display: none;
+}
+.eloompayu-terminal-index #co-payment-form li.payu-cc-expiry span {
+	margin-left: 10px;
+}
+.eloompayu-terminal-index #co-payment-form  input.payu-cc-number {
+	padding-right: 60px;
+	background-repeat: no-repeat;
+	background-position: right center;
+	background-size: 60px;
+}
+

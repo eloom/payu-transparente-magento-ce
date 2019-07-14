@@ -1,0 +1,15 @@
+<script type="text/javascript">
+	function payuLogger() {
+		new Ajax.Request("<?php echo $this->getLoggerUrl() ?>", {
+			method: 'get',
+			onSuccess: function (transport) {
+				if (transport.responseText) {
+					document.getElementById('payu_log_result').value = transport.responseText;
+				    document.getElementById('payu_log_result').style.display = 'block';
+				}
+			}
+		});
+	}
+</script>
+
+<?php echo $this->getButtonHtml() ?>

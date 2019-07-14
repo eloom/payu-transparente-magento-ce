@@ -1,0 +1,26 @@
+<?php $code = 'terminal_boleto'; ?>
+<ul id="payment_form_<?php echo $code ?>" class="form-list" style="display: none;">
+	<?php if($inst = $this->getInstructions()):?>
+      <li class="note-msg">
+          <ul>
+              <li><span><?php echo $inst; ?></span></li>
+          </ul>
+      </li>
+	<?php endif;?>
+
+    <li>
+        <div class="buttons-set">
+            <button type="button" class="button" onclick="payment.save(this)"><span><span><?php echo $this->__('Billett Generate') ?></span></span></button>
+            <span id="please-wait" style="display:none;">
+                <img src="<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif') ?>" alt="<?php echo $this->__('Processing...') ?>" title="<?php echo $this->__('Processing...') ?>" class="v-middle" /> <?php echo $this->__('Processing...') ?>
+            </span>
+        </div>
+    </li>
+</ul>
+
+<script type="text/javascript">
+	//<![CDATA[
+	Eloom.PayU.Terminal.PaymentBoleto.config = {code: "<?php echo $code ?>", amount: <?php echo $this->getGrandTotal(); ?>};
+	Eloom.PayU.Terminal.PaymentBoleto.init();
+	//]]>
+</script>

@@ -1,0 +1,73 @@
+<?php $code = $this->getMethodCode(); ?>
+<ul id="payment_form_<?php echo $code ?>" class="form-list" style="display: none;">
+    <?php if($inst = $this->getInstructions()):?>
+      <li class="note-msg">
+          <ul>
+              <li><span><?php echo $inst; ?></span></li>
+          </ul>
+      </li>
+    <?php endif;?>
+  <li class="payu-cc-number">
+    <label><?php echo $this->__('CC Number') ?></label>
+    <input type="tel" name="payment[payu_cc_number]" id="<?php echo $code ?>-payu-cc-number" class="input-text required-entry validate-cc-number-eloom payu-cc-number" autocomplete="off"/>
+  </li>
+  <li class="payu-cc-owner">
+    <label><?php echo $this->__('CC Owner') ?></label>
+    <input type="text" name="payment[payu_cc_owner]" id="<?php echo $code ?>-payu-cc-owner" class="input-text required-entry validate-cc-owner-eloom payu-cc-owner" style="text-transform: uppercase;" autocomplete="off"/>
+  </li>
+  <li class="payu-cc-expiry">
+    <label><?php echo $this->__('CC Expiry') ?><span><?php echo $this->__('Month/Year') ?></span></label>
+    <input type="tel" name="payment[payu_cc_expiry]" id="<?php echo $code ?>-payu-cc-expiry" class="input-text required-entry" placeholder="MM/AAAA" autocomplete="off"/>
+  </li>
+  <li class="payu-cc-cvc">
+    <label><?php echo $this->__('CC CVC') ?></label>
+    <input type="tel" name="payment[payu_cc_cvc]" id="<?php echo $code ?>-payu-cc-cvc" class="input-text required-entry validate-cc-cvn" autocomplete="off"/>
+  </li>
+  <li>
+    <label><?php echo $this->__('Installments') ?></label>
+    <select name="payment[payu_cc_installments]" id="<?php echo $code ?>-installments" class="input-text required-entry">
+      <option value=""><?php echo $this->__('Informe o número do cartão') ?></option>
+    </select>
+  </li>
+  <li>
+    <input type="checkbox" name="payment[payu_cc_holder_another]" id="<?php echo $code ?>-payu-cc-holder-another" value="1" />
+    <label for="<?php echo $code ?>-payu-cc-holder-another" class="required"><?php echo $this->__('Holder Another') ?></label>
+  </li>
+  <li class="payu-cc-holder payu-cc-holder-cpf">
+    <label><?php echo $this->__('Holder CPF') ?></label>
+    <input type="tel" name="payment[payu_cc_holder_cpf]" id="<?php echo $code ?>-payu-cc-holder-cpf" class="input-text idecheckoutvm-cpf" autocomplete="off" />
+  </li>
+  <li class="payu-cc-holder payu-cc-holder-phone">
+    <label><?php echo $this->__('Holder Phone') ?></label>
+    <input type="tel" name="payment[payu_cc_holder_phone]" id="<?php echo $code ?>-payu-cc-holder-phone" class="input-text" autocomplete="off"/>
+  </li>
+  <li class="payu-cc-holder payu-cc-holder-birth-date">
+    <label><?php echo $this->__('Holder Birth Date') ?></label>
+    <input type="tel" name="payment[payu_cc_holder_birth_date]" id="<?php echo $code ?>-payu-cc-holder-birth-date" placeholder="DD/MM/AAAA" class="input-text" autocomplete="off"/>
+  </li>
+  <li>
+    <input type="hidden" name="payment[payu_cc_type]" id="<?php echo $code ?>-payu-cc-type" />
+  </li>
+</ul>
+<script type="text/javascript">
+//<![CDATA[
+  Eloom.PayU.PaymentCc.config = {code: "<?php echo $code ?>",
+    amount: <?php echo $this->getGrandTotal(); ?>,
+    firstInstallmentAmount: <?php echo $this->getFirstInstallmentAmount(); ?>,
+    percentualDiscount: <?php echo $this->getPercentualDiscount(); ?>,
+    minInstallment: <?php echo $this->getMinInstallment(); ?>,
+    totalInstallmens: <?php echo $this->getTotalInstallments(); ?>
+  };
+  Eloom.PayU.PaymentCc.init();
+
+    $('<?php echo $code ?>-payu-cc-holder-cpf').observe('keyup', function () {
+        ideMaskInst.inject(this, ideMaskInst.cpf);
+    }).triggerEvent('keyup');
+    $('<?php echo $code ?>-payu-cc-holder-phone').observe('keyup', function () {
+        ideMaskInst.inject(this, ideMaskInst.phone);
+    }).triggerEvent('keyup');
+    $('<?php echo $code ?>-payu-cc-holder-birth-date').observe('keyup', function () {
+        ideMaskInst.inject(this, ideMaskInst.date);
+    }).triggerEvent('keyup');
+//]]>
+</script>

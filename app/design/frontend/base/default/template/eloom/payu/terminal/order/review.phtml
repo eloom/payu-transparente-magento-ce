@@ -1,0 +1,19 @@
+<?php $_order = $this->getOrder() ?>
+
+<div class="dashboard">
+    <div class="box-review box-info">
+        <div class="box-head">
+            <h2><?php echo $this->__('Review') ?></h2>
+        </div>
+        <div class="col2-set">
+            <div class="box">
+                <div class="box-content">
+                    <div class="page-title title-buttons">
+                        <h1><?php echo $this->__('Order #%s - %s', $_order->getRealOrderId(), $_order->getStatusLabel()) ?></h1>
+                        <p class="order-date"><?php echo $this->__('Order Date: %s', $this->formatDate($_order->getCreatedAtStoreDate(), 'long')) ?></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+<script type="text/javascript">
+//<![CDATA[
+    var quoteBaseGrandTotal = <?php echo (float)$this->getBaseGrandTotal(); ?>;
+    var checkQuoteBaseGrandTotal = quoteBaseGrandTotal;
+    var quoteGrandTotalClean = quoteBaseGrandTotal;
+
+    var payment = new EloomPayment('co-payment-form', "<?php echo $this->getUrl('eloompayu/terminal/savePayment', array('_secure' => true)); ?>");
+    var lastPrice;
+//]]>
+</script>
+<form id="co-payment-form">
+    <input type="hidden" name="isAjax" value="true"/>
+    <fieldset>
+        <?php echo $this->getChildHtml('methods') ?>
+    </fieldset>
+    <div id="messages-payu" style="display: none;">
+        <ul class="messages">
+            <li class="notice-msg"></li>
+        </ul>
+    </div>
+    <?php echo $this->getBlockHtml('formkey') ?>
+</form>
+
+<script type="text/javascript">
+//<![CDATA[
+    payment.currentMethod = "<?php echo $this->getChild('methods')->getSelectedMethodCode() ?>";
+
+    numeral.register('locale', 'pt_BR', {
+        delimiters: {
+            thousands: '.',
+            decimal: ','
+        },
+        abbreviations: {
+            thousand: 'k',
+            million: 'm',
+            billion: 'b',
+            trillion: 't'
+        },
+        ordinal: function (number) {
+        },
+        currency: {
+            symbol: 'R$'
+        }
+    });
+    numeral.locale('pt_BR');
+//]]>
+</script>
