@@ -22,7 +22,7 @@ Integração com intermediador de pagamentos PayU Brasil.
 
 - [x] desconto à vista
 
-- [x] juros ao mês para recebimentos por **antecipação**
+- [x] configuração de juros ao mês para recebimentos por **no fluxo**
 
 - [x] instruções ao cliente que são inseridas no checkout
 
