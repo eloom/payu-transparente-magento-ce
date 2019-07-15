@@ -1,5 +1,6 @@
-# PayU Transparente Brasil para Magento CE
+# PayU Transparente para Magento CE
 
+Integração com intermediador de pagamentos PayU Brasil. 
 
 ## Recursos
 
