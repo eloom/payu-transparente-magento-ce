@@ -33,6 +33,7 @@ class Eloom_PayU_Api_PaymentMethods {
   const VISANET = 'VISANET';
   const RIPSA = 'RIPSA';
   const CODENSA = 'CODENSA';
+	const PIX = 'PIX';
 
   /**
    * payment methods availables in payu including its payment method type

@@ -137,7 +137,9 @@ class Eloom_PayU_Util_PayUParameters {
   const BUYER_CONTACT_PHONE = 'buyerContactPhone';
 
   /** The buyer's DNI. */
-  const BUYER_DNI = 'payerDNI';
+  const BUYER_DNI = 'buyerDNI';
+
+  const BUYER_DNI_TYPE = 'buyerDNIType';
 
   /** The buyer's city. */
   const BUYER_CITY = 'buyerCity';

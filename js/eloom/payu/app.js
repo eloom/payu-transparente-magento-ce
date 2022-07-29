@@ -22,6 +22,18 @@ Eloom.PayU = {
       }
     }
   },
+	PaymentPix: {
+		config: null,
+		init: function () {
+			if (this.config == null) {
+				return;
+			}
+			$j('#p_method_' + Eloom.PayU.PaymentPix.config.code).after('<img src="' + Eloom.PayU.config.logo + '">');
+			if (payment.currentMethod === Eloom.PayU.PaymentPix.config.code) {
+				$j('#p_method_' + Eloom.PayU.PaymentPix.config.code).click();
+			}
+		}
+	},
   PaymentCc: {
     config: null,
     init: function () {

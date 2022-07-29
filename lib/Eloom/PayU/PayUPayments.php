@@ -140,6 +140,18 @@ class Eloom_PayU_PayUPayments {
         );
 
         $required = array_merge($requiredAll, $requiredBoletoBancario);
+      } else if ("PIX" == $paymentMethodParameter) {
+	      $requiredPix = array(Eloom_PayU_Util_PayUParameters::PAYER_NAME,
+		      Eloom_PayU_Util_PayUParameters::PAYER_DNI,
+		      Eloom_PayU_Util_PayUParameters::PAYMENT_METHOD,
+		      Eloom_PayU_Util_PayUParameters::PAYER_STREET,
+		      Eloom_PayU_Util_PayUParameters::PAYER_STREET_2,
+		      Eloom_PayU_Util_PayUParameters::PAYER_CITY,
+		      Eloom_PayU_Util_PayUParameters::PAYER_STATE,
+		      Eloom_PayU_Util_PayUParameters::PAYER_POSTAL_CODE
+	      );
+
+	      $required = array_merge($requiredAll, $requiredPix);
       } else if ("PSE" == $paymentMethodParameter) {
         $requiredPSE = array(
             Eloom_PayU_Util_PayUParameters::REFERENCE_CODE,

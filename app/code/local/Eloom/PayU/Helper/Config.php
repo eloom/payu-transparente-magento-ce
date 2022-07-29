@@ -9,27 +9,27 @@ class Eloom_PayU_Helper_Config extends Mage_Core_Helper_Abstract {
   /**
    * Merchant ID
    */
-  const XML_PATH_MERCHANT_ID = 'payment/eloom_payu/merchant_id'; //668978
+  const XML_PATH_MERCHANT_ID = 'payment/eloom_payu/merchant_id';
 
   /**
    * API Key
    */
-  const XML_PATH_API_KEY = 'payment/eloom_payu/api_key'; //LHzRB8CDNSE0HScwJxGz4i4ug0
+  const XML_PATH_API_KEY = 'payment/eloom_payu/api_key';
 
   /**
    * Account ID
    */
-  const XML_PATH_ACCOUNT_ID = 'payment/eloom_payu/account_id'; //671601
+  const XML_PATH_ACCOUNT_ID = 'payment/eloom_payu/account_id';
 
   /**
    * Public Key
    */
-  const XML_PATH_PUBLIC_KEY = 'payment/eloom_payu/public_key'; // PK633jwAesg102D1KY85O8I56f
+  const XML_PATH_PUBLIC_KEY = 'payment/eloom_payu/public_key';
 
   /**
    * Login API
    */
-  const XML_PATH_LOGIN_API = 'payment/eloom_payu/login_api'; // PK633jwAesg102D1KY85O8I56f
+  const XML_PATH_LOGIN_API = 'payment/eloom_payu/login_api';
 
   /**
    * Ambiente
@@ -106,6 +106,16 @@ class Eloom_PayU_Helper_Config extends Mage_Core_Helper_Abstract {
    * Prazo de Expiração para compras realizadas entre Domingo e Quinta-Feira via Boleto
    */
   const XML_PATH_PAYMENT_BOLETO_CANCEL_ON_SUNDAY = 'payment/eloom_payu_boleto/cancel_on_sunday';
+
+	/**
+	 * Instruções do PIX
+	 */
+	const XML_PATH_PAYMENT_PIX_INSTRUCTIONS = 'payment/eloom_payu_pix/instructions';
+
+	/**
+	 * Expiração do PIX
+	 */
+	const XML_PATH_PAYMENT_PIX_EXPIRATION = 'payment/eloom_payu_pix/expiration';
 
   /**
    * 
@@ -223,6 +233,14 @@ class Eloom_PayU_Helper_Config extends Mage_Core_Helper_Abstract {
 
 	public function getApprovedOrderStatus() {
 		return $this->getConfig(self::XML_PATH_APPROVED_ORDER_STATUS);
+	}
+
+	public function getPixExpiration() {
+		return (int) trim($this->getConfig(self::XML_PATH_PAYMENT_PIX_EXPIRATION));
+	}
+
+	public function getPixInstructions() {
+		return trim($this->getConfig(self::XML_PATH_PAYMENT_PIX_INSTRUCTIONS));
 	}
 
 }

@@ -13,6 +13,8 @@
 "CC Owner","Titular do Cartão"
 "CC Expiry","Validade"
 "CC CVC","Cód. Segurança"
+"Copy PIX code","Copiar"
+
 # -- D
 "Discount", "Desconto à vista"
 
@@ -20,6 +22,7 @@
 "Error","Erro"
 "Environment","Processar pagamento em"
 "Enabled","Habilitado"
+"Expiration Date","Data de expiração"
 
 # -- G
 "Get Logger","Buscar Log"
@@ -57,6 +60,7 @@
 "Payment Link","Link de Pagamento"
 "Process Payment","Pagar"
 "Processing...","Processando..."
+"PIX code copied","Código Pix copiado"
 
 # -- S
 "Holder CPF", "CPF do Titular"
