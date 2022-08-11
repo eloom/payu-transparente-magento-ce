@@ -24,7 +24,6 @@ $helper = Mage::helper('eloom_payu');
     <?php endif; ?>
 
   <?php if ($this->isBoleto()): ?>
-    <p><?php echo Mage::helper('checkout')->__('Print Boleto Message'); ?></p>
     <div class="buttons-set">
       <a href="<?php echo $this->getBilletLink(); ?>" target="blank" class="button" title="<?php echo Mage::helper('checkout')->__('Print Boleto'); ?>">
         <i class="fa fa-barcode" aria-hidden="true"></i>
