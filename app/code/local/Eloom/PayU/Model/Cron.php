@@ -19,9 +19,11 @@ class Eloom_PayU_Model_Cron extends Mage_Core_Model_Abstract {
 
     $sondas = Mage::getResourceModel('sales/order_payment_collection')
             ->addFieldToSelect('*')
-            ->addFieldToFilter('method', array('in' => array(Eloom_PayU_Model_Method_Cc::PAYMENT_METHOD_CC_CODE,
-																												     Eloom_PayU_Model_Method_Boleto::PAYMENT_METHOD_BOLETO_CODE,
-																														 Eloom_PayU_Model_Method_Terminal::PAYMENT_METHOD_TERMINAL_CODE)))
+            ->addFieldToFilter('method', array('in' => array(
+                Eloom_PayU_Model_Method_Cc::PAYMENT_METHOD_CC_CODE,
+                Eloom_PayU_Model_Method_Pix::PAYMENT_METHOD_PIX_CODE,
+                Eloom_PayU_Model_Method_Boleto::PAYMENT_METHOD_BOLETO_CODE,
+				Eloom_PayU_Model_Method_Terminal::PAYMENT_METHOD_TERMINAL_CODE)))
             ->addFieldToFilter('cc_status', Eloom_PayU_Enum_Transaction_State::PENDING);
 
     $isTest = false;
@@ -75,9 +77,9 @@ class Eloom_PayU_Model_Cron extends Mage_Core_Model_Abstract {
       $collection->addFieldToFilter('method', Eloom_PayU_Model_Method_Boleto::PAYMENT_METHOD_BOLETO_CODE);
       $collection->addAttributeToFilter('p.boleto_cancellation', array('lt' => date('Y-m-d H:i:s', strtotime('now'))));
 
-			if($this->logger->isDebugEnabled()) {
-				$this->logger->debug('SQL: ' . $collection->getSelect());
-			}
+        if($this->logger->isDebugEnabled()) {
+            $this->logger->debug('SQL: ' . $collection->getSelect());
+        }
 
       if ($collection->getSize()) {
         foreach ($collection as $order) {
